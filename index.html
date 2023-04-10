@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade uso JSON</title>
+</head>
+
+<body>
+    <div style="text-align: center">
+        <h1>Atividade uso JSON</h1>
+        <input class="campos" type="text" id="placa" placeholder="Placa do automóvel" />
+        <br />
+        <button onclick="buscaVeiculo()">Buscar</button>
+    </div>
+</body>
+<script>
+    let placa, marca, modelo, ano
+
+    function definaCampos() {
+        nome = document.getElementById("nome");
+
+        cep = document.getElementById("cep");
+
+        rua = document.getElementById("rua");
+
+        bairro = document.getElementById("bairro");
+
+        cidade = document.getElementById("cidade");
+
+        estado = document.getElementById("estado");
+
+        pais = document.getElementById("pais");
+
+        if (placa.value.length == 7) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function buscaEndereco() {
+        if (definaCampos()) {
+            var cepvalido = cep.value.substr(0, 5) + "-" + cep.value.substr(5);
+
+            var url =
+                "https://my-json-server.typicode.com/nicolyboscato/api-veiculos/automoveis/?code=" +
+                cepvalido;
+
+            fetch(url)
+                .then((res) => res.json())
+
+                .then((data) => {
+
+                    rua.value = data[0].address;
+
+                    bairro.value = data[0].district;
+
+                    cidade.value = data[0].city;
+
+                    estado.value = data[0].state;
+
+                    pais.value = "Brasil";
+                });
+
+        } else {
+            alert("valor do CEP inválido");
+        }
+    }
+
+    function cadastro() {
+        var pessoa = {
+            nome: nome.value,
+
+            cep: cep.value,
+
+            rua: rua.value,
+
+            bairro: bairro.value,
+
+            cidade: cidade.value,
+
+            estado: estado.value,
+
+            pais: pais.value,
+        };
+
+        var lista = JSON.parse(localStorage.getItem(""));
+
+        if (lista == null) {
+            lista = [];
+        }
+
+        lista.push(pessoa);
+
+        localStorage.setItem("Pessoas", JSON.stringify(lista));
+
+        alert(pessoa.nome + " foi cadastrada com sucesso!");
+    }
+</script>
+
+</html>
