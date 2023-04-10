@@ -1,19 +1,19 @@
 {
     "automoveis": [
         {
-            "placa": "AAA 1A11",
+            "placa": "AAA1A11",
             "marca": "MARCA1",
             "modelo": "MODELO1",
             "ano": "2001"
         },
         {
-            "placa": "AAA 2A22",
+            "placa": "AAA2A22",
             "marca": "MARCA2",
             "modelo": "MODELO2",
             "ano": "2002"
         },
         {
-            "placa": "AAA 3A133",
+            "placa": "AAA3A133",
             "marca": "MARCA3",
             "modelo": "MODELO3",
             "ano": "2003"
